@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 
 # Nom de l'image Docker
 IMAGE_NAME="im-tp4"

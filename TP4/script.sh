@@ -40,4 +40,3 @@ then
 	exit 1;
 fi
 
-echo "Vous pouvez acceder à la visualisation de la BDD via localhost:5000."
