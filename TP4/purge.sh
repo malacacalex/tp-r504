@@ -1,4 +1,5 @@
 docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
-docker network rm net-tp4
-docker volumes prune -a
+docker rm --force $(docker ps -a -q)
+
+docker network prune -f
+docker volume prune -f
