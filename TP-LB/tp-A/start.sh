@@ -1,4 +1,4 @@
-docker build -t im-nginx-lb -f tp-A/Dockerfile .
+docker build -t im-nginx-lb -f Dockerfile .
 
 # Vérification et création des dossiers seulement s'ils n'existent pas
 if [ ! -d "shared1" ]; then
@@ -12,7 +12,16 @@ if [ ! -d "shared2" ]; then
 fi
 
 # Reste du script pour la construction de l'image Docker et le lancement des conteneurs...
-docker run -d --name nginx1 -p 81:80 -v "$(pwd)/shared1:/usr/share/nginx/html" nginx
-docker run -d --name nginx2 -p 82:80 -v "$(pwd)/shared2:/usr/share/nginx/html" nginx
-docker run -d --name nginx-lb -p 83:80 im-nginx-lb:latest
+docker run -d --name nginx1 \
+	-p 81:80 \
+	-v "$(pwd)/shared1":"/usr/share/nginx/html" \
+	nginx
+
+docker run -d --name nginx2 \
+	-p 82:80 \
+	-v "$(pwd)/shared2:/usr/share/nginx/html" \
+	nginx
+
+docker run -d --name nginx-lb \
+	-p 83:80 im-nginx-lb:latest
 
